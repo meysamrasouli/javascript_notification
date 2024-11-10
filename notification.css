@@ -1,0 +1,109 @@
+ul#notification, ul#notification *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul#notification {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    visibility: hidden;
+    list-style: none;
+    z-index: 10; 
+}
+#notification li {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.7s ease;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px #000000f0;
+    visibility: visible;
+    user-select: none;
+    z-index: 20; 
+}
+#notification li[class*='notif-']{
+    animation-duration: 1s;
+    animation-fill-mode: both; 
+}
+#notification li .notif-lifespan{
+    width: 0;
+    height: 3px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    animation: notificationLifespan ease-in-out forwards;
+}
+#notification li .notif-text{
+    padding: 10px 15px;
+    line-height: 15px;
+    text-align: center;
+    color: #fff
+}
+#notification li.notif-normal {
+    background-color: #ccc; 
+}
+#notification li.notif-normal .notif-lifespan{
+    background-color: #aaa;
+}
+#notification li.notif-warning {
+    background-color: #f79009; 
+}
+#notification li.notif-warning .notif-lifespan{
+    background-color: #dc6803;
+}
+#notification li.notif-success {
+    background-color: #12b76a; 
+}
+#notification li.notif-success .notif-lifespan{
+    background-color: #039855;
+}
+#notification li.notif-error {
+    background-color: #f04438; 
+}
+#notification li.notif-error .notif-lifespan{
+    background-color: #d92d20;
+}
+#notification li.bounceInRight{
+    animation-name: bounceInRight;
+}
+#notification li.bounceOutRight{
+    animation-name: bounceOutRight;
+}
+@keyframes notificationLifespan {
+    from { width: 0; }
+    to { width: 100%; }
+}
+@keyframes bounceInRight {
+    from, 60%, 75%, 90%, to {   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);   }
+    from {
+        opacity: 0;
+        transform: translateX(3000px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-25px);
+    }
+    75% {   transform: translateX(10px);   }
+    90% {   transform: translateX(-5px);   }
+    to {   transform: none;   }
+}
+@keyframes bounceOutRight {
+    20% {
+        opacity: 1;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+}
